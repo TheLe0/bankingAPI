@@ -7,8 +7,9 @@
   "author": "TheLe0 <leob.tosin@hotmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/src/app.js",
+    "postinstall": "tsc",
     "start:dev": "ts-node-dev --respawn  src/app.ts | pino-pretty",
-    "start:prod": "set NODE_ENV=production && tsc && node dist/src/app.js",
     "test": "jest -setupFiles dotenv/config --coverage"
   },
   "devDependencies": {

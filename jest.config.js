@@ -5,4 +5,6 @@ module.exports = {
   setupFiles: [
     'dotenv/config'
   ],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts','!src/*/filesToExclude.ts']
 };

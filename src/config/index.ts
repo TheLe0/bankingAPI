@@ -1,1 +1,2 @@
-export { serverConfig as ServerConfig } from './server';
+export {  envVars as AppConfig } from './envVars';
+export { DatabaseType } from './DatabaseType';

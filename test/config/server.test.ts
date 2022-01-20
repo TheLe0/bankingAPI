@@ -1,9 +1,5 @@
 import { ServerConfig } from '../../src/config';
 
-test('read HOST env var test', () => {
-    expect(ServerConfig.Host).toBeDefined();
-});
-
-test('read PORT env var test', () => {
-    expect(ServerConfig.Port).toBeDefined();
+test('read DATABASE_TYPE env var test', () => {
+    expect(ServerConfig.DatabaseType).toBeDefined();
 });

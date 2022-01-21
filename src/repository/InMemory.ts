@@ -24,12 +24,28 @@ export default class InMemory implements IRepository {
         return account;
     }
 
+    private updateBalanceAccount(account: Account, value: number) :Account {
+
+         this.listAccount.forEach( (element, index) => {
+            if (element.getAccountNum() == account.getAccountNum()) {
+                element.setBalance(element.getBalance() + value);
+
+                this.listAccount[index] = element;
+                
+                return element;
+            }
+         });
+
+        return account;
+    }
+
     public createAccount(accountNum: string, balance: number): IDestination {
         
-        const account = this.findAccountByAccountNum(accountNum);
+        let account = this.findAccountByAccountNum(accountNum);
         
-
         if (account != undefined) {
+
+            account = this.updateBalanceAccount(account, balance);
             return {
                 id: account.getAccountNum(),
                 balance: account.getBalance()

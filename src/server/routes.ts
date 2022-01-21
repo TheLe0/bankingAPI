@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ResetController } from '../controller';
+import { ResetController, BalanceController } from '../controller';
 
 const routes :Router = Router();
 
@@ -8,5 +8,6 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/reset', ResetController.reset)
+routes.get('/balance', BalanceController.getBalanceFromAccountNum);
 
 export default routes;

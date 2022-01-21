@@ -9,7 +9,7 @@ class ResetController {
         const repository :IRepository = RepositoryFactory.getRepository(AppConfig.DatabaseType);
         
         repository.resetDatabase();
-        res.status(200);
+        res.status(200).send("OK");
     }
 
 }

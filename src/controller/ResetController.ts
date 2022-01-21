@@ -4,7 +4,7 @@ import { AppConfig } from '../config';
 
 class ResetController {
 
-    public async reset(req: Request, res: Response)
+    public reset(req: Request, res: Response)
     {
         const repository :IRepository = RepositoryFactory.getRepository(AppConfig.DatabaseType);
         

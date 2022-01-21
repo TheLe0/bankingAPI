@@ -14,7 +14,7 @@ run-dev:
 
 run-prod:
 	make setup
-	yarn start:prod
+	yarn start
 
 tests:
 	make setup

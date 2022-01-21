@@ -6,11 +6,12 @@ class EventController extends BaseController {
 
     public getEvent(req: Request, res: Response) {
 
-        const { type, destination, amount} = req.body;
+        const { type, destination, origin, amount} = req.body;
+        var account = undefined;
 
         switch (type as EventType) {
             case EventType.DEPOSIT:
-                const account = BaseController.repository.createAccount(destination, amount);
+                account = BaseController.repository.createAccount(destination, amount);
 
                 res.status(201).json({
                     destination: {
@@ -20,7 +21,18 @@ class EventController extends BaseController {
                 });
             break;
             case EventType.WITHDRAW:
-                res.status(202).send("É UM SAQUE");
+                account = BaseController.repository.withdraw(origin, amount);
+
+                if (account == undefined) {
+                    res.status(404).send("0");
+                } else {
+                    res.status(202).json({
+                        origin: {
+                            id: account.id,
+                            balance: account.balance
+                        }
+                    });
+                }
             break;
             case EventType.TRANSFER:
                 res.status(202).send("É UMA TRANSFERENCIA");

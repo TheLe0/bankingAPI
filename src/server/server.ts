@@ -9,6 +9,18 @@ export default class Server {
     constructor() {  
         this.app = express();
         this.log = makeLogger(); 
+
+        this.setup();
+    }
+
+    private setup() {
+        this.setupBodyParser();
+        this.setupRoutes();
+    }
+
+    private setupBodyParser() {
+        this.app.use(express.urlencoded({ extended: true}));
+        this.app.use(express.json());
     }
 
     private setupRoutes() {
@@ -16,7 +28,6 @@ export default class Server {
     }
 
     public start() {
-        this.setupRoutes();
         this.app.listen(process.env.PORT || 3000, () => {
             this.log.debug({
                 type: 'LOG_TYPE_1',

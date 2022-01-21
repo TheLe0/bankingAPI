@@ -12,7 +12,7 @@ class BalanceController extends BaseController{
         if (balance == undefined) {
             res.status(404).send("0");
         } else {
-            res.status(202).send(String(balance));
+            res.status(200).send(String(balance));
         }
     }
 }

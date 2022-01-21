@@ -15,8 +15,14 @@ export default class InMemory implements IRepository {
         let accountFrom = this.findAccountByAccountNum(accountNumFrom);
         let accountTo = this.findAccountByAccountNum(accountNumTo);
 
-        if (accountFrom == undefined || accountTo == undefined) {
+        if (accountFrom == undefined) {
             return undefined;
+        }
+
+        if (accountTo == undefined) {
+            const { id, balance} = this.createAccount(accountNumTo, 0);
+
+            accountTo = new Account(id, balance);
         }
 
         accountFrom = this.updateBalanceAccount(accountFrom, (amount * -1));
@@ -29,7 +35,7 @@ export default class InMemory implements IRepository {
             },
             destination: {
                 id: accountTo.getAccountNum(),
-                balance: accountTo.getBalance()
+                balance: (accountTo.getBalance() == 0) ? amount : accountTo.getBalance()
             }
         }
     }

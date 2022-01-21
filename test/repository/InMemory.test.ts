@@ -82,9 +82,10 @@ test('transfer from a not existing account to another test', () => {
 
 test('transfer from an account to a not existing account test', () => {
     
-    repository.createAccount("200", 10);
+    repository.createAccount("200", 20);
     
-    let account = repository.transferAmount("100", "200", 10);
+    let account = repository.transferAmount("200", "100", 10);
 
-    expect(account).toBeUndefined();
+    expect(account.origin.balance).toBe(10);
+    expect(account.destination.balance).toBe(10);
 });

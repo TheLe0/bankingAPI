@@ -53,9 +53,38 @@ test('withdraw from an account test', () => {
     expect(account.balance).toBe(100);
 });
 
-test('withdraw from an account test', () => {
+test('withdraw from a not existing account test', () => {
     
     let account = repository.withdraw("100", 10);
+
+    expect(account).toBeUndefined();
+});
+
+test('transfer from an account to another test', () => {
+    
+    repository.createAccount("100", 50);
+    repository.createAccount("200", 10);
+
+    let account = repository.transferAmount("100", "200", 40);
+
+    expect(account.origin.balance).toBe(10);
+    expect(account.destination.balance).toBe(50);
+});
+
+test('transfer from a not existing account to another test', () => {
+
+    repository.createAccount("100", 10);
+    
+    let account = repository.transferAmount("200", "100", 10);
+
+    expect(account).toBeUndefined();
+});
+
+test('transfer from an account to a not existing account test', () => {
+    
+    repository.createAccount("200", 10);
+    
+    let account = repository.transferAmount("100", "200", 10);
 
     expect(account).toBeUndefined();
 });

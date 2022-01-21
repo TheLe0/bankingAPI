@@ -35,7 +35,23 @@ class EventController extends BaseController {
                 }
             break;
             case EventType.TRANSFER:
-                res.status(202).send("É UMA TRANSFERENCIA");
+                const transfer = BaseController.repository.transferAmount(origin, destination, amount);
+
+                if (transfer == undefined) {
+                    res.status(404).send("0");
+                } else {
+                    res.status(201).json({
+                        origin: {
+                            id: transfer.origin.id,
+                            balance: transfer.origin.balance
+                        },
+                        destination: {
+                            id: transfer.destination.id,
+                            balance: transfer.destination.balance
+                        }
+                    });
+                }
+
             break;
             default:
                 res.status(404).send("Operação inválida!");

@@ -10,6 +10,23 @@ export default class InMemory implements IRepository {
         this.listAccount = new Array<Account>();
     }
 
+    public withdraw(accountNum: string, amount: number): IDestination {
+        
+        let account = this.findAccountByAccountNum(accountNum);
+
+        if (account == undefined) {
+            return undefined;
+        }
+
+        account = this.updateBalanceAccount(account, (amount * -1));
+
+        return {
+            id: account.getAccountNum(),
+            balance: account.getBalance()
+        }
+
+    }
+
     private findAccountByAccountNum(accountNum: string) :Account {
 
         let account :Account = undefined;

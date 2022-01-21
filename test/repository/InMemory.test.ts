@@ -41,3 +41,21 @@ test('get balance of an account that exists test', () => {
 
     expect(balance).toBe(account.balance);
 });
+
+test('withdraw from an account test', () => {
+    
+    let account = repository.createAccount("100", 10);
+    account = repository.createAccount("100", 100);
+
+    account = repository.withdraw("100", 10);
+
+    expect(account.id).toBe("100");
+    expect(account.balance).toBe(100);
+});
+
+test('withdraw from an account test', () => {
+    
+    let account = repository.withdraw("100", 10);
+
+    expect(account).toBeUndefined();
+});

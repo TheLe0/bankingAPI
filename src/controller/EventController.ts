@@ -26,7 +26,7 @@ class EventController extends BaseController {
                 if (account == undefined) {
                     res.status(404).send("0");
                 } else {
-                    res.status(202).json({
+                    res.status(201).json({
                         origin: {
                             id: account.id,
                             balance: account.balance

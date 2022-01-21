@@ -6,5 +6,10 @@ module.exports = {
     'dotenv/config'
   ],
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts','!src/*/filesToExclude.ts']
+  collectCoverageFrom: ['src/**/*.ts','!src/*/filesToExclude.ts'],
+  coveragePathIgnorePatterns : [
+    'src/app.ts',
+    'src/controller/*.ts',
+    'src/server/*.ts' 
+  ]
 };

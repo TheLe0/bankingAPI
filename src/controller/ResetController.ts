@@ -1,14 +1,11 @@
 import { Request, Response } from 'express';
-import { IRepository, RepositoryFactory} from '../repository'
-import { AppConfig } from '../config';
+import { BaseController } from './BaseController'
 
-class ResetController {
+class ResetController extends BaseController {
 
     public reset(req: Request, res: Response)
-    {
-        const repository :IRepository = RepositoryFactory.getRepository(AppConfig.DatabaseType);
-        
-        repository.resetDatabase();
+    {        
+        BaseController.repository.resetDatabase();
         res.status(200).send("OK");
     }
 

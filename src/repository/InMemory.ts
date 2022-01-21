@@ -1,5 +1,5 @@
 import { IRepository } from ".";
-import { IDestination } from "../contract";
+import { IDestination, ITransfer } from "../contract";
 import { Account } from "../model";
 
 export default class InMemory implements IRepository {
@@ -8,6 +8,30 @@ export default class InMemory implements IRepository {
 
     constructor() {
         this.listAccount = new Array<Account>();
+    }
+
+    public transferAmount(accountNumFrom: string, accountNumTo: string, amount: number): ITransfer {
+        
+        let accountFrom = this.findAccountByAccountNum(accountNumFrom);
+        let accountTo = this.findAccountByAccountNum(accountNumTo);
+
+        if (accountFrom == undefined || accountTo == undefined) {
+            return undefined;
+        }
+
+        accountFrom = this.updateBalanceAccount(accountFrom, (amount * -1));
+        accountTo = this.updateBalanceAccount(accountTo, amount);
+
+        return {
+            origin: { 
+                id: accountFrom.getAccountNum(),
+                balance: accountFrom.getBalance()
+            },
+            destination: {
+                id: accountTo.getAccountNum(),
+                balance: accountTo.getBalance()
+            }
+        }
     }
 
     public withdraw(accountNum: string, amount: number): IDestination {

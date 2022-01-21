@@ -12,7 +12,7 @@ class EventController extends BaseController {
             case EventType.DEPOSIT:
                 const account = BaseController.repository.createAccount(destination, amount);
 
-                res.status(202).json({
+                res.status(201).json({
                     destination: {
                         id: account.id,
                         balance: account.balance

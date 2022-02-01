@@ -94,7 +94,7 @@ The application was built using the best practices and methodologies of the soft
 
 Some design patterns used on this application:
 
-* <b>Singleton</b>: On the class <b>RepositorySingleton</b> on the <i>repository</i> module, is used to ensure that the database is going to have just one instance. This is required by the fact that the data storing in on the application memory, so if there's more than one instance of the object, the data is not going to be centralized.
+* <b>Singleton</b>: On the class <b>RepositorySingleton</b> on the <i>repository</i> module, is used to ensure that the database is going to have just one instance. This is required by the fact that the data is stored on the application memory, so if there's more than one instance of the object, the data is not going to be centralized.
 
 * <b>Abstract Factory</b>: On the class <b>RepositoryFactory</b> on the <i>repository</i> module, is where creates an instance of the object that is going to do data manipulation. With this design pattern, you can easily change between databases and have more than one way to store the data, without have to rewrite the whole application.
 
